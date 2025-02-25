@@ -1,0 +1,281 @@
+
+
+-
+interdit
+
+C++11
+Boost
+*printf()
+*alloc()
+free()
+using namespace <ns_name>
+friend
+STL
+Containers (vector/list/map/...)
+Algorithmes (include <algorithm>)
+fonction dans un fichier d'en-tête sauf fonction template
+-
+
+
+-
+classe sous forme canonique de Coplien
+
+le constructeur par défaut
+C()
+créer un nouvel objet sans recevoir d'argument
+
+le constructeur de recopie
+C(const& C)
+crée un nouvel objet en copiant les valeurs d’un autre objet existant
+il est aussi utilisé quand on passe un objet par valeur à une fonction. par exemple : "f(C c)". on crée un objet local à f de type C en recopiant les valeur de c.
+il est aussi utilisé lorsqu'une fonction renvoie un objet de type C.
+
+le destructeur
+~C
+il permet de détruire l'objet lorsqu'il sort de son scope.
+il contient notamment des delete si l'objet contient des pointeurs alloués dynamiquement.
+
+(la surcharge de) l'opérateur d'affectation
+C& operator=(const& C)
+il recopie les valeurs d'un objet existant dans un autre objet existant
+il renvoie une référence à l'objet courant ce qui permet d'enchainer les affectations. par exemple : a = b = c c'est a = (b = c) donc c'est possible car (b = c) renvoie b
+-
+
+
+-
+std::toupper(c) → c en majuscule
+-
+
+
+-
+afficher une chaine sur au moins 10 caractères
+std::cout << std::setw(10) << s;
+il faut inclure #include <iomanip>
+-
+
+
+
+-
+afficher un nombre sur 2 avec un 0 à gauche
+<< std::setfill('0') << std::setw(2) <<
+-
+
+
+-
+ostringstream
+-
+
+
+-
+si on veut forcer l'utilisation d'un constructeur avec paramètre pour la classe C,
+il faut mettre "C();" en privé.
+-
+
+
+-
+time_t, time, localtime
+#include <ctime>
+
+std::put_time
+#include <iomanip>
+
+
+time_t		now;
+struct tm*	tm;
+time(&now);
+tm = localtime(&now);
+
+dans now on a le nombre de secondes écoulées depuis l'epoch
+localtime transforme ce nombre de secondes en une structure qui contient toutes les informations : l'année, le mois, le jour, l'heure, etc
+
+put_time 
+C'est un manipulateur de flux permettant d'afficher un objet tm dans un format spécifique
+cout << std::put_time(tm, "[%Y%m%d_%H%M%S] ");
+
+sinon, à la main :
+1900 + tm->tm_year
+tm->tm_mon + 1
+tm->tm_mday
+tm->tm_hour
+tm->tm_min
+tm->tm_sec
+-
+
+
+
+
+
+
+
+-
+#pragma once
+
+à la place de #ifndef, #def, #endif
+-
+
+
+
+-
+la classe ostringstream
+
+pour "output string stream"
+
+std::ostringstream oss;
+
+dans sstream
+
+c'est un flux.
+ça permet de récupérer du texte, comme avec si on écrivait sur cout, mais dans un objet qui pourra ensuite etre converti en string par exemple.
+
+oss.str()
+pour convertir en string
+
+
+si on a ouvert un fichier dans un ifstream nommé f, on peut faire :
+
+oss << f.rdbuf();
+
+
+il existe un peu pareil que cin, pour lire une string comme si c'était un fichier :
+istringstream
+
+pour combiner ostringstream et istringstream on a stringstream.
+ça permet d'avoir un flux dans lequel on peut à la fois écrire et lire.
+-
+
+
+
+
+-
+size_t find(const std::string& str, size_t pos = 0) const;
+méthode sur une chaine
+
+pos c'est la position de départ pour commencer la recherche.
+
+elle renvoie l'index de la première occurrence de str ou std::string::npos si str n'est pas trouvée
+
+npos est l'abréviation de "no position"
+-
+
+
+
+-
+std::string& replace(size_t pos, size_t len, const std::string& str);
+
+pos : la position à partir de laquelle remplacer
+len : combien de caractères vont être remplacés
+str : la chaine à insérer
+-
+
+
+-
+roundf
+
+dans cmath
+arrondir un flottant à l'entier le plus proche
+
+float roundf(float x);
+-
+
+
+-
+redéfinir << 
+
+<< est une fonction globale
+
+std::ostream& operator<<(std::ostream& os, const C& c)
+{
+    os << c.getValue();
+    return os;
+}
+
+std::cout est un exemple de std::ostream
+
+on renvoie une ref à l'os donné en paramètre pour pouvoir faire des enchainement. par exemple : cout << a << b c'est (cout << a) << b donc on renvoie cout pour b aussi.
+
+
+si on veut utiliser les membres privés d'une classe dans la surcharge de <<, il faut utiliser le mot clé friend devant sa déclaration
+
+exemple :
+class Fixed {
+private:
+    int _rawValue;
+public:
+    Fixed(int value) : _rawValue(value) {}
+
+    // Déclaration de la fonction amie
+    friend std::ostream& operator<<(std::ostream& os, const Fixed& fixed);
+};
+
+std::ostream& operator<<(std::ostream& os, const Fixed& fixed) {
+    os << fixed._rawValue;  // ✅ Accès possible car `friend`
+    return os;
+}
+-
+
+
+
+
+
+-
+les opérateurs de pré et post [in/dé]crémentation
+
+
+pré incrémentation
+
+C& operator++();
+
+on modifie l'objet et on le renvoie vraiment
+
+
+post incrémentation
+
+C operator++(int); 
+
+on modifie l'objet et on renvoie une copie de l'objet tel qu'il était avant la modification
+
+int est un paramètre factice qui permet de différencier les 2 définitions, il n’est pas utilisé, c’est juste une convention syntaxique
+-
+
+-
+std::cout << __PRETTY_FUNCTION__ << std::endl;
+
+pour faire un message de log simple. ça affiche la fonction qui est appelée
+-
+
+
+
+-
+construire un nombre a virgule fixe
+
+
+a partir dun entier c'est facile, on decale les bits a gauche avec <<
+
+
+pour un flottant f le constructeur est : roundf(f * (1 << _fractionalBits))
+
+explications :
+
+decaler un nombre de 3 bits a gauche ca revient a le multiplier par 2 puissance 3
+
+or, 2 puissance 3 = 1 << 3
+
+si la multiplication ne tombe pas juste, et comme on ne garde que la partie entiere du resultat, la representation en virgule fixe sera une approximation du nombre
+ 
+
+
+
+
+-
+caster un double d en float :
+static_cast<float>(d)
+-
+
+
+-
+flag de compilation -Wshadow et -Wno-shadow
+
+activer / désactiver l'avertissement de shadowing
+
+c'est quand une variable locale masque une variable de la même portée ou d'une portée plus large
+-
