@@ -2,6 +2,7 @@ NAME = exe
 FLAGS = -Wall -Wextra -Werror -std=c++98 -Iinc
 SRCS = $(addprefix src/, \
 	main.cpp \
+	Bureaucrat.cpp \
 )
 OBJS = $(patsubst src/%.cpp, tmp/%.o, $(SRCS))
 
@@ -9,7 +10,7 @@ all : $(NAME)
 
 tmp/%.o : src/%.cpp
 	@ mkdir -p tmp
-	@ c++ $(FLAGS) -c $< -o $@ && printf "."
+	@ c++ $(FLAGS) -c $< -o $@ && printf ".\n"
 
 $(NAME) : $(OBJS)
 	@ echo
