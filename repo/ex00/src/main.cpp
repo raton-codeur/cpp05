@@ -19,15 +19,26 @@ int main()
 		{
 			Bureaucrat b1("bob", 0);
 		}
-		catch (const Bureaucrat::GradeTooHighException& e)
+		catch (std::exception& e)
 		{
 			std::cerr << e.what() << std::endl;
 		}
 		try
 		{
+			Bureaucrat b1("bob", -6);
+		}
+		catch (std::exception& e)
+		{
+			std::cerr << e.what() << std::endl;
+		}
+	}
+	std::cout << "--- 3 ---" << std::endl;
+	{
+		try
+		{
 			Bureaucrat b2("bob", 155);
 		}
-		catch (const Bureaucrat::GradeTooLowException& e)
+		catch (std::exception& e)
 		{
 			std::cerr << e.what() << std::endl;
 		}
