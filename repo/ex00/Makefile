@@ -1,4 +1,4 @@
-NAME = exe
+NAME = bureaucrat
 FLAGS = -Wall -Wextra -Werror -std=c++98 -Iinc
 SRCS = $(addprefix src/, \
 	main.cpp \
