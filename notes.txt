@@ -17,34 +17,8 @@ fonction dans un fichier d'en-tête sauf fonction template
 -
 
 
--
-classe sous forme canonique de Coplien
-
-le constructeur par défaut
-C()
-créer un nouvel objet sans recevoir d'argument
-
-le constructeur de recopie
-C(const& C)
-crée un nouvel objet en copiant les valeurs d’un autre objet existant
-il est aussi utilisé quand on passe un objet par valeur à une fonction. par exemple : "f(C c)". on crée un objet local à f de type C en recopiant les valeur de c.
-il est aussi utilisé lorsqu'une fonction renvoie un objet de type C.
-
-le destructeur
-~C
-il permet de détruire l'objet lorsqu'il sort de son scope.
-il contient notamment des delete si l'objet contient des pointeurs alloués dynamiquement.
-
-(la surcharge de) l'opérateur d'affectation
-C& operator=(const& C)
-il recopie les valeurs d'un objet existant dans un autre objet existant
-il renvoie une référence à l'objet courant ce qui permet d'enchainer les affectations. par exemple : a = b = c c'est a = (b = c) donc c'est possible car (b = c) renvoie b
--
 
 
--
-std::toupper(c) → c en majuscule
--
 
 
 -
@@ -58,11 +32,6 @@ il faut inclure #include <iomanip>
 -
 afficher un nombre sur 2 avec un 0 à gauche
 << std::setfill('0') << std::setw(2) <<
--
-
-
--
-ostringstream
 -
 
 
@@ -131,6 +100,9 @@ oss.str()
 pour convertir en string
 
 
+ofstream et ifstream est dans fstream
+
+
 si on a ouvert un fichier dans un ifstream nommé f, on peut faire :
 
 oss << f.rdbuf();
@@ -168,53 +140,6 @@ str : la chaine à insérer
 -
 
 
--
-roundf
-
-dans cmath
-arrondir un flottant à l'entier le plus proche
-
-float roundf(float x);
--
-
-
--
-redéfinir << 
-
-<< est une fonction globale
-
-std::ostream& operator<<(std::ostream& os, const C& c)
-{
-    os << c.getValue();
-    return os;
-}
-
-std::cout est un exemple de std::ostream
-
-on renvoie une ref à l'os donné en paramètre pour pouvoir faire des enchainement. par exemple : cout << a << b c'est (cout << a) << b donc on renvoie cout pour b aussi.
-
-
-si on veut utiliser les membres privés d'une classe dans la surcharge de <<, il faut utiliser le mot clé friend devant sa déclaration
-
-exemple :
-class Fixed {
-private:
-    int _rawValue;
-public:
-    Fixed(int value) : _rawValue(value) {}
-
-    // Déclaration de la fonction amie
-    friend std::ostream& operator<<(std::ostream& os, const Fixed& fixed);
-};
-
-std::ostream& operator<<(std::ostream& os, const Fixed& fixed) {
-    os << fixed._rawValue;  // ✅ Accès possible car `friend`
-    return os;
-}
--
-
-
-
 
 
 -
@@ -235,12 +160,6 @@ C operator++(int);
 on modifie l'objet et on renvoie une copie de l'objet tel qu'il était avant la modification
 
 int est un paramètre factice qui permet de différencier les 2 définitions, il n’est pas utilisé, c’est juste une convention syntaxique
--
-
--
-std::cout << __PRETTY_FUNCTION__ << std::endl;
-
-pour faire un message de log simple. ça affiche la fonction qui est appelée
 -
 
 
@@ -266,10 +185,6 @@ si la multiplication ne tombe pas juste, et comme on ne garde que la partie enti
 
 
 
--
-caster un double d en float :
-static_cast<float>(d)
--
 
 
 -
