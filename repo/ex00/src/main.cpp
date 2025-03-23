@@ -59,6 +59,7 @@ int main()
 	try
 	{
 		Bureaucrat b("bob", 1);
+		std::cout << b << std::endl;
 		b.incrementGrade();
 	}
 	catch (std::exception& e)
