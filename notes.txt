@@ -62,11 +62,6 @@ afficher un nombre sur 2 avec un 0 à gauche
 
 
 -
-ostringstream
--
-
-
--
 si on veut forcer l'utilisation d'un constructeur avec paramètre pour la classe C,
 il faut mettre "C();" en privé.
 -
