@@ -70,6 +70,7 @@ int main()
 	try
 	{
 		Bureaucrat b;
+		std::cout << b << std::endl;
 		b.decrementGrade();
 	}
 	catch (std::exception& e)
