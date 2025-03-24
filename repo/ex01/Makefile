@@ -1,8 +1,9 @@
-NAME = exe
+NAME = form
 FLAGS = -Wall -Wextra -Werror -std=c++98 -Iinc
 SRCS = $(addprefix src/, \
 	main.cpp \
 	Bureaucrat.cpp \
+	Form.cpp \
 )
 OBJS = $(patsubst src/%.cpp, tmp/%.o, $(SRCS))
 
