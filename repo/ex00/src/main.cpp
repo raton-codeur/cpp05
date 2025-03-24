@@ -18,7 +18,7 @@ int main()
 	{
 		Bureaucrat b("bob", 0);
 	}
-	catch (std::exception& e)
+	catch (const std::exception& e)
 	{
 		std::cerr << e.what() << std::endl;
 	}
@@ -26,7 +26,7 @@ int main()
 	{
 		Bureaucrat b("bob", -6);
 	}
-	catch (std::exception& e)
+	catch (const std::exception& e)
 	{
 		std::cerr << e.what() << std::endl;
 	}
@@ -35,7 +35,7 @@ int main()
 	{
 		Bureaucrat b("bob", 155);
 	}
-	catch (std::exception& e)
+	catch (const std::exception& e)
 	{
 		std::cerr << e.what() << std::endl;
 	}
@@ -62,7 +62,7 @@ int main()
 		std::cout << b << std::endl;
 		b.incrementGrade();
 	}
-	catch (std::exception& e)
+	catch (const std::exception& e)
 	{
 		std::cerr << e.what() << std::endl;
 	}
@@ -73,7 +73,7 @@ int main()
 		std::cout << b << std::endl;
 		b.decrementGrade();
 	}
-	catch (std::exception& e)
+	catch (const std::exception& e)
 	{
 		std::cerr << e.what() << std::endl;
 	}

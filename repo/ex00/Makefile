@@ -10,11 +10,10 @@ all : $(NAME)
 
 tmp/%.o : src/%.cpp
 	@ mkdir -p tmp
-	@ c++ $(FLAGS) -c $< -o $@ && printf ".\n"
+	c++ $(FLAGS) -c $< -o $@
 
 $(NAME) : $(OBJS)
-	@ echo
-	@ c++ $(FLAGS) $(OBJS) -o $@
+	c++ $(FLAGS) $(OBJS) -o $@
 
 clean :
 	@ rm -rf tmp && echo "clean"
