@@ -1,4 +1,5 @@
 #include "ShrubberyCreationForm.hpp"
+#include <fstream>
 
 ShrubberyCreationForm::ShrubberyCreationForm() :
 	AForm("shrubbery_creation_form", 145, 137),
@@ -27,5 +28,19 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
 void ShrubberyCreationForm::execute(const Bureaucrat& b) const
 {
 	checkExecution(b);
-	std::cout << "exec du shruberry par " << b << std::endl;
+	std::ofstream f(_target + "_shrubbery");
+	if (!f.is_open())
+		throw std::runtime_error("cannot open file");
+	const std::string s =
+		"               ,@@@@@@@,\n"
+		"       ,,,.   ,@@@@@@/@@,  .oo8888o.\n"
+		"    ,&%%&%&&%,@@@@@/@@@@@@,8888\\88/8o\n"
+		"   ,%&\\%&&%&&%,@@@\\@@@/@@@88\\88888/88'\n"
+		"   %&&%&%&/%&&%@@\\@@/ /@@@88888\\88888'\n"
+		"   %&&%/ %&%%&&@@\\ V /@@' `88\\8 `/88'\n"
+		"   `&%\\ ` /%&'    |.|        \\ '|8'\n"
+		"       |o|        | |         | |\n"
+		"       |.|        | |         | |\n"
+		"    \\\\/ ._\\//_/__/  ,\\_//__\\\\/.  \\_//__/_\n";
+	f << s;
 }
