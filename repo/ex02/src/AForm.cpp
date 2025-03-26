@@ -57,12 +57,12 @@ int AForm::getRequiredGradeToExecute() const
 
 const char* AForm::GradeTooHighException::what() const throw()
 {
-	return "form : grade too high";
+	return "(form) grade too high";
 }
 
 const char* AForm::GradeTooLowException::what() const throw()
 {
-	return "form : grade too low";
+	return "(form) grade too low";
 }
 
 const char* AForm::UnsignedFormException::what() const throw()
