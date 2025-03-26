@@ -9,6 +9,7 @@ class Form
 		bool				_signed;
 		const int			_requiredGradeToSign;
 		const int			_requiredGradeToExecute;
+
 	public :
 				Form();
 				Form(const std::string& name, int requiredGradeToSign, int requiredGradeToExecute);
