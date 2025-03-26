@@ -26,6 +26,6 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
 
 void ShrubberyCreationForm::execute(const Bureaucrat& b) const
 {
-	AForm::execute(b);
+	checkExecution(b);
 	std::cout << "exec du shruberry par " << b << std::endl;
 }

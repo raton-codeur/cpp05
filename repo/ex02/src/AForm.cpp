@@ -89,7 +89,7 @@ void AForm::beSigned(const Bureaucrat& b)
 	_signed = true;
 }
 
-void AForm::execute(const Bureaucrat& b) const
+void AForm::checkExecution(const Bureaucrat& b) const
 {
 	if (!_signed)
 		throw UnsignedFormException();
