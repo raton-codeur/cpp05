@@ -22,8 +22,7 @@ class AForm
 		int					getRequiredGradeToSign() const;
 		int					getRequiredGradeToExecute() const;
 
-		void beSigned(const Bureaucrat& b);
-
+		void			beSigned(const Bureaucrat& b);
 		virtual void	execute(const Bureaucrat& b) const = 0;
 		void			checkExecution(const Bureaucrat& b) const;
 
