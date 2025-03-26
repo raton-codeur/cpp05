@@ -6,7 +6,7 @@ int main()
 	{
 		Form f1;
 		std::cout << "f1 (default-constructed) : " << f1 << std::endl;
-		Form f2("registration_form", 20, 30);
+		Form f2("registration_form", 30, 20);
 		std::cout << "f2 (constructed with parameters) : " << f2 << std::endl;
 		Form f3(f2);
 		std::cout << "f3 (copy-constructed) : " << f3 << std::endl;
@@ -14,7 +14,7 @@ int main()
 	std::cout << "--- 2 ---" << std::endl;
 	try
 	{
-		Form f("registration_form", 0, 30);
+		Form f("registration_form", -5, 20);
 	}
 	catch (const std::exception& e)
 	{
@@ -22,7 +22,7 @@ int main()
 	}
 	try
 	{
-		Form f("registration_form", -5, 30);
+		Form f("registration_form", 1, 0);
 	}
 	catch (const std::exception& e)
 	{
@@ -30,23 +30,7 @@ int main()
 	}
 	try
 	{
-		Form f("registration_form", 30, 0);
-	}
-	catch (const std::exception& e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
-	try
-	{
-		Form f("registration_form", 30, -5);
-	}
-	catch (const std::exception& e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
-	try
-	{
-		Form f("registration_form", 0, 0);
+		Form f("registration_form", 0, -1);
 	}
 	catch (const std::exception& e)
 	{
@@ -80,8 +64,8 @@ int main()
 	std::cout << "--- 4 ---" << std::endl;
 	{
 		Bureaucrat	b("bob", 10);
-		Form		f1("admission_form", 10, 30);
-		Form		f2("registration_form", 20, 30);
+		Form		f1("admission_form", 10, 1);
+		Form		f2("registration_form", 20, 1);
 		f1.beSigned(b);
 		f2.beSigned(b);
 		std::cout << f1 << std::endl;
@@ -95,7 +79,7 @@ int main()
 	try
 	{
 		Bureaucrat	b("bob", 25);
-		Form		f("registration_form", 20, 30);
+		Form		f("registration_form", 20, 1);
 		f.beSigned(b);
 	}
 	catch (const std::exception& e)
@@ -105,9 +89,9 @@ int main()
 	std::cout << "--- 6 ---" << std::endl;
 	{
 		Bureaucrat	b("bob", 10);
-		Form		f1("admission_form", 10, 30);
-		Form		f2("registration_form", 20, 30);
-		Form		f3("consent_form", 5, 30);
+		Form		f1("admission_form", 10, 1);
+		Form		f2("registration_form", 20, 1);
+		Form		f3("consent_form", 5, 1);
 		b.signForm(f1);
 		b.signForm(f2);
 		b.signForm(f3);
