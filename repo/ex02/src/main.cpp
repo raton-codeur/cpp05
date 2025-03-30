@@ -59,6 +59,24 @@ int main()
 		std::cerr << e.what() << std::endl;
 	}
 	b1.executeForm(f1);
+	try
+	{
+		f2.execute(b1);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	b1.executeForm(f2);
+	try
+	{
+		f3.execute(b1);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	b1.executeForm(f3);
 	std::cout << "--- 5 ---" << std::endl;
 	b2.executeForm(f1);
 	std::cout << "--- 6 ---" << std::endl;
