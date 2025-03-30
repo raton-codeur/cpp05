@@ -28,7 +28,7 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
 void ShrubberyCreationForm::execute(const Bureaucrat& b) const
 {
 	checkExecution(b);
-	std::ofstream f(_target + "_shrubbery");
+	std::ofstream f((_target + "_shrubbery").c_str());
 	if (!f.is_open())
 		throw std::runtime_error("cannot open file");
 	const std::string s =
