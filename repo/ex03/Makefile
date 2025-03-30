@@ -1,10 +1,13 @@
-NAME = forms
+NAME = exe
 FLAGS = -Wall -Wextra -Werror -std=c++98 -Iinc
 SRCS = $(addprefix src/, \
 	main.cpp \
 	Bureaucrat.cpp \
 	AForm.cpp \
 	ShrubberyCreationForm.cpp \
+	RobotomyRequestForm.cpp \
+	PresidentialPardonForm.cpp \
+	Intern.cpp \
 )
 OBJS = $(patsubst src/%.cpp, tmp/%.o, $(SRCS))
 
