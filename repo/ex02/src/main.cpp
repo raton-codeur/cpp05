@@ -20,31 +20,31 @@ int main()
 	std::cout << "--- 2 ---" << std::endl;
 	try
 	{
-		f1.execute(b2);
+		f1.execute(b1);
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << e.what() << std::endl;
 	}
-	b2.executeForm(f1);
+	b1.executeForm(f1);
 	try
 	{
-		f2.execute(b2);
+		f2.execute(b1);
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << e.what() << std::endl;
 	}
-	b2.executeForm(f2);
+	b1.executeForm(f2);
 	try
 	{
-		f3.execute(b2);
+		f3.execute(b1);
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << e.what() << std::endl;
 	}
-	b2.executeForm(f3);
+	b1.executeForm(f3);
 	std::cout << "--- 3 ---" << std::endl;
 	b2.signForm(f1);
 	b2.signForm(f2);
