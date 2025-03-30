@@ -1,15 +1,15 @@
 #include "RobotomyRequestForm.hpp"
-#define RED "\033[0;31m"
-#define GREEN "\033[0;32m"
+#define RED "\033[31m"
+#define GREEN "\033[32m"
 #define RESET "\033[0m"
 
 RobotomyRequestForm::RobotomyRequestForm() :
-	AForm("RobotomyRequestForm", 72, 45),
+	AForm("robotomy_request_form", 72, 45),
 	_target("default_target")
 {}
 
 RobotomyRequestForm::RobotomyRequestForm(const std::string& target) :
-	AForm("RobotomyRequestForm", 72, 45),
+	AForm("robotomy_request_form", 72, 45),
 	_target(target)
 {}
 
